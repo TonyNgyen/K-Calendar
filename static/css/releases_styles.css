@@ -1,0 +1,70 @@
+body {
+    background-color: #fff;
+}
+
+.navbar {
+    padding: 2%;
+}
+
+.navbar-custom {
+    background-color: black;
+}
+
+#upcoming-releases, #past-releases {
+    text-align: center;
+    padding: 0 7%;
+}
+
+.upcoming-releases-header{
+    text-align: center;
+    padding-top: 15%;
+    padding-bottom: 6%;
+    color: black;
+    font-size: 700%
+}
+
+.past-releases-header {
+    text-align: center;
+    padding-top: 7%;
+    padding-bottom: 6%;
+    color: black;
+    font-size: 700%
+}
+
+.row {
+    text-align: center;
+    margin: 0 auto 0;
+}
+
+.card {
+    text-align: center;
+    margin: 10% auto 10%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #000;
+    border-color: #000
+}
+
+.btn-primary:hover, .btn:active, .btn:focus  {
+    color: #000 !important;
+    background-color: #fff !important;
+    border-color: #000 !important;
+}
+
+.popover-header {
+    background-color: #000;
+    color: #fff;
+}
+.popover-body {
+    background-color: #fff;
+    color: #000;
+}
+
+.footer {
+    margin-top: 5%
+}
