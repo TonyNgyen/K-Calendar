@@ -59,6 +59,10 @@ body {
     border-color: black;
 }
 
+.releases-img {
+    color: #000;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #000;

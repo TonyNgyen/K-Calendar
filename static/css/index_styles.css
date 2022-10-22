@@ -87,3 +87,15 @@ body {
 .footer {
     margin-top: 5%
 }
+
+.search-button-primary {
+    color: #fff;
+    background-color: #000;
+    border-color: #000
+}
+
+.search-button-primary:hover, .search-button:active, .search-button:focus  {
+    color: #000 !important;
+    background-color: #fff !important;
+    border-color: #000 !important;
+}
