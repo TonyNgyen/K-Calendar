@@ -16,11 +16,11 @@
   <script crossorigin="anonymous" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
     src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/@popperjs/core@2"></script>
-  <title>Document</title>
+  <title>Releases</title>
 </head>
 
 <body>
-<!-- NavBar -->
+  <!-- NavBar -->
   <section id="nav-section">
     <div class="nav-bar">
       <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom">
@@ -49,68 +49,86 @@
     </div>
   </section>
 
-<!-- Upcoming Releases -->
-   <h1 class="upcoming-releases-header">
-     Upcoming Releases
-   </h1>
+  <!-- Upcoming Releases -->
+  <h1 class="upcoming-releases-header">
+    Upcoming Releases
+  </h1>
+
+  <div class="ascending-descending">
+    {% if ascending == True %}
+      <button type="button" class="btn btn-custom btn-sm" disabled>
+        Ascending
+      </button>
+      <a href="{{ url_for('releases_descending') }}" class="btn btn-custom btn-sm">
+        Descending
+      </a>
+    {% else %}
+      <a href="{{ url_for('releases') }}" class="btn btn-custom btn-sm">
+        Ascending
+      </a>
+      <button type="button" class="btn btn-custom btn-sm" disabled>
+        Descending
+      </button>
+    {% endif %}
+  </div>
 
   <section id="upcoming-releases">
     <div class="row">
-    {% for release in releases %}
+      {% for release in releases %}
       <div class="col-lg-4 col-md-6 releases-card">
         <div class="card" style="width: 90%;">
           {% if ":" in release[1] %}
-              <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
+          <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
           {% else %}
-            <img src="/static/images/card/{{ release[1] }}-card-img.jpeg" class="card-img-top releases-img" alt="...">
+          <img src="/static/images/card/{{ release[1] }}-card-img.jpeg" class="card-img-top releases-img" alt="...">
           {% endif %}
           <div class="card-body">
             <h5 class="group-name">{{release[1]}}</h5>
             <p class="date">{{release[0]}}</p>
             <p class="album-name">{{release[3]}}</p>
             <a class="btn btn-primary" data-container="body" title="test" tabindex="0" data-trigger="focus"
-               data-toggle="popover" data-placement="bottom" data-content="test">
+              data-toggle="popover" data-placement="bottom" data-content="test">
               Go somewhere
             </a>
           </div>
         </div>
       </div>
-    {% endfor %}
-    <div class="row">
+      {% endfor %}
+      <div class="row">
   </section>
 
-<!-- Past Releases -->
-   <h1 class="past-releases-header">
-     Past Releases
-   </h1>
+  <!-- Past Releases -->
+  <h1 class="past-releases-header">
+    Past Releases
+  </h1>
 
   <section id="past-releases">
     <div class="row">
-    {% for release in p_releases %}
+      {% for release in p_releases %}
       <div class="col-lg-4 col-md-6 releases-card">
         <div class="card" style="width: 90%;">
           {% if ":" in release[1] %}
-              <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
+          <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
           {% else %}
-            <img src="/static/images/card/{{ release[1] }}-card-img.jpeg" class="card-img-top releases-img" alt="...">
+          <img src="/static/images/card/{{ release[1] }}-card-img.jpeg" class="card-img-top releases-img" alt="...">
           {% endif %}
           <div class="card-body">
             <h5 class="group-name">{{release[1]}}</h5>
             <p class="date">{{release[0]}}</p>
             <p class="album-name">{{release[3]}}</p>
             <a class="btn btn-primary" data-container="body" title="test" tabindex="0" data-trigger="focus"
-               data-toggle="popover" data-placement="bottom" data-content="test">
+              data-toggle="popover" data-placement="bottom" data-content="test">
               Go somewhere
             </a>
           </div>
         </div>
       </div>
-    {% endfor %}
-    <div class="row">
+      {% endfor %}
+      <div class="row">
   </section>
 
 
-<!-- Footer -->
+  <!-- Footer -->
   <div class="container footer">
     <footer class="py-3 my-4">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">

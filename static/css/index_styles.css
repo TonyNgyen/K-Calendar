@@ -7,7 +7,11 @@ body {
 }
 
 .navbar-custom {
-    background-color: black;
+    background-color: #000;
+}
+
+.search-input {
+    background-color: #000;
 }
 
 #carousel {
