@@ -46,6 +46,10 @@ def releases_descending():
     return render_template("releases.html", releases=upcoming_releases_descending, p_releases=past_releases_descending,
                            ascending=False)
 
+@app.route('/artist_profile/<string:artist_name>')
+def artist_profile(artist_name):
+    return render_template("artist_profile.html", artist_name="test")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
