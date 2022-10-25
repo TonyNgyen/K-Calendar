@@ -9,29 +9,16 @@ from releases import Releases
 # UPCOMING_RELEASES_URL = "https://dbkpop.com/2022/09/01/october-2022-k-pop-comebacks-and-debuts/"
 SPOTIFY_URL = "https://open.spotify.com/artist/3LFFf4EpKn2krneZ9vozyz"
 
-TODAY_DATE = datetime.datetime.today()
-UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/october/"
-headers = {'User-Agent': 'Mozilla/5.0'}
-
 app = Flask(__name__)
 
 releases = Releases()
 
-releases.get_releases(date=TODAY_DATE, url=UPCOMING_RELEASES_URL, request_headers=headers)
+(upcoming_releases_ascending, upcoming_releases_descending, past_releases_ascending, past_releases_descending) = \
+    releases.get_releases()
 
-response = requests.get(url=SPOTIFY_URL)
-soup = BeautifulSoup(response.content, "html.parser")
-meta = soup.find("meta", {"property": "og:image"})["content"]
-
-upcoming_releases_ascending = releases.upcoming_releases
-upcoming_releases_ascending.sort(key=lambda x: x[0])
-upcoming_releases_descending = upcoming_releases_ascending[::-1]
+releases.get_filter()
 
 closest_releases = releases.get_closest_releases()
-
-past_releases_descending = releases.past_releases
-past_releases_descending.sort(key=lambda x: x[0])
-past_releases_ascending = past_releases_descending[::-1]
 
 
 @app.route('/')
