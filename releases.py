@@ -49,6 +49,9 @@ UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/20
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
 FILTER_RELEASES_URL = "https://dbkpop.com/2022/09/01/october-2022-k-pop-comebacks-and-debuts/"
 
+# TRY USING FILTER LINK TO MAKE A LIST OF NAME OF THE ARTISTS
+# THEN USE THE REDDIT LINK TO GET ALL THE ARTISTS AND GO THROUGH THE LIST AND CHECK IF THE ARTIST IS IN THE FILTER LIST
+# IF SO, APPEND ALL OF THAT INFORMATION TO A NEW LIST
 
 class Releases:
 
