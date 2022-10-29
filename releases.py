@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas
 import datetime
+import json
 
 TODAY_DATE = datetime.datetime.today()
 UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/october/"
@@ -50,6 +51,9 @@ class Releases:
             if self.all_releases[i][1] == "" or self.all_releases[i][1] == "?":
                 self.all_releases[i][1] = "N/A"
 
+            if self.all_releases[i][3] == "":
+                self.all_releases[i][3] = "Not Found"
+
             if self.all_releases[i][2].casefold() in self.filter:
                 self.filtered_releases.append(self.all_releases[i])
                 if datetime.datetime.strptime(self.all_releases[i][0], "%m-%d-%Y") < TODAY_DATE:
@@ -58,11 +62,11 @@ class Releases:
                     self.upcoming_releases.append(self.all_releases[i])
 
         self.upcoming_releases_ascending = self.upcoming_releases
-        self.upcoming_releases_ascending.sort(key=lambda x: x[0])
+        # self.upcoming_releases_ascending.sort(key=lambda x: x[0])
         self.upcoming_releases_descending = self.upcoming_releases_ascending[::-1]
 
         self.past_releases_descending = self.past_releases
-        self.past_releases_descending.sort(key=lambda x: x[0])
+        # self.past_releases_descending.sort(key=lambda x: x[0])
         self.past_releases_ascending = self.past_releases_descending[::-1]
 
         return self.upcoming_releases_ascending, self.upcoming_releases_descending, \
@@ -91,3 +95,8 @@ class Releases:
             self.filter.loc[length] = row
 
         self.filter = self.filter.loc[:, "Artist"].tolist()
+
+    def get_images(self):
+        with open("static/images/card/Data.json", "r") as data_file:
+            data = json.load(data_file)
+        return data

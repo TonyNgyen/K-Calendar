@@ -51,37 +51,15 @@
 
   <!-- Upcoming Releases -->
   <h1 class="upcoming-releases-header">
-    Upcoming Releases
+    All Arist and Images Test
   </h1>
-
-  <div class="ascending-descending">
-    {% if ascending == True %}
-      <button type="button" class="btn btn-custom btn-sm" disabled>
-        Ascending
-      </button>
-      <a href="{{ url_for('releases_descending') }}" class="btn btn-custom btn-sm">
-        Descending
-      </a>
-    {% else %}
-      <a href="{{ url_for('releases') }}" class="btn btn-custom btn-sm">
-        Ascending
-      </a>
-      <button type="button" class="btn btn-custom btn-sm" disabled>
-        Descending
-      </button>
-    {% endif %}
-  </div>
 
   <section id="upcoming-releases">
     <div class="row">
       {% for release in releases %}
       <div class="col-lg-4 col-md-6 releases-card">
         <div class="card" style="width: 90%;">
-          {% if ":" in release[2] %}
-          <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
-          {% else %}
-          <img src="https://i.scdn.co/image/ab6761610000e5eb196f5af772aeb1bdd3a6be65" class="card-img-top releases-img" alt="...">
-          {% endif %}
+          <img src="{{ images[release[2]]['img'] }}" class="card-img-top releases-img" alt="...">
           <div class="card-body">
             <h5 class="group-name">{{release[2]}}</h5>
             <p class="date">{{release[0]}}</p>
@@ -96,37 +74,6 @@
       {% endfor %}
       <div class="row">
   </section>
-
-  <!-- Past Releases -->
-  <h1 class="past-releases-header">
-    Past Releases
-  </h1>
-
-  <section id="past-releases">
-    <div class="row">
-      {% for release in p_releases %}
-      <div class="col-lg-4 col-md-6 releases-card">
-        <div class="card" style="width: 90%;">
-          {% if ":" in release[2] %}
-          <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
-          {% else %}
-          <img src="https://i.scdn.co/image/ab6761610000e5eb196f5af772aeb1bdd3a6be65" class="card-img-top releases-img" alt="...">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="group-name">{{release[2]}}</h5>
-            <p class="date">{{release[0]}}</p>
-            <p class="album-name">{{release[3]}}</p>
-            <a class="btn btn-primary" data-container="body" title="test" tabindex="0" data-trigger="focus"
-              data-toggle="popover" data-placement="bottom" data-content="test">
-              Go somewhere
-            </a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-      <div class="row">
-  </section>
-
 
   <!-- Footer -->
   <div class="container footer">

@@ -107,11 +107,7 @@
     {% for release in releases %}
       <div class="col-lg-4 col-md-6 releases-card">
         <div class="card" style="width: 90%;">
-          {% if ":" in release[1] %}
-              <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
-          {% else %}
-            <img src="/static/images/card/{{ release[1] }}-card-img.jpeg" class="card-img-top releases-img" alt="...">
-          {% endif %}
+          <img src="{{ images[release[2]]['img'] }}" class="card-img-top releases-img" alt="...">
           <div class="card-body">
             <h5 class="group-name">{{ release[2] }}</h5>
             <p class="date">{{ release[0] }}</p>
