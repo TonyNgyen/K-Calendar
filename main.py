@@ -6,7 +6,6 @@ import pandas as pd
 import datetime
 from releases import Releases
 
-# UPCOMING_RELEASES_URL = "https://dbkpop.com/2022/09/01/october-2022-k-pop-comebacks-and-debuts/"
 SPOTIFY_URL = "https://open.spotify.com/artist/3LFFf4EpKn2krneZ9vozyz"
 
 app = Flask(__name__)
