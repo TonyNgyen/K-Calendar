@@ -16,7 +16,6 @@ releases = Releases()
 (upcoming_releases_ascending, upcoming_releases_descending, past_releases_ascending, past_releases_descending) = \
     releases.get_releases()
 
-releases.get_filter()
 
 closest_releases = releases.get_closest_releases()
 

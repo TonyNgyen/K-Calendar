@@ -59,6 +59,7 @@ class Releases:
         self.all_releases = None
         self.upcoming_releases = []
         self.past_releases = []
+        self.filter = []
         self.filter_releases = []
         self.upcoming_releases_ascending = []
         self.upcoming_releases_descending = []
@@ -66,6 +67,7 @@ class Releases:
         self.past_releases_descending = []
 
     def get_releases(self):
+        self.get_filter()
         response = requests.get(url=UPCOMING_RELEASES_URL, headers=HEADERS)
         soup = BeautifulSoup(response.content, "html.parser")
         table = soup.find("table")
@@ -93,10 +95,12 @@ class Releases:
             if self.all_releases[i][1] == "" or self.all_releases[i][1] == "?":
                 self.all_releases[i][1] = "N/A"
 
-            if datetime.datetime.strptime(self.all_releases[i][0], "%m-%d-%Y") < TODAY_DATE:
-                self.past_releases.append(self.all_releases[i])
-            else:
-                self.upcoming_releases.append(self.all_releases[i])
+            if self.all_releases[i][2].casefold() in self.filter:
+                self.filter_releases.append(self.all_releases[i])
+                if datetime.datetime.strptime(self.all_releases[i][0], "%m-%d-%Y") < TODAY_DATE:
+                    self.past_releases.append(self.all_releases[i])
+                else:
+                    self.upcoming_releases.append(self.all_releases[i])
 
         self.upcoming_releases_ascending = self.upcoming_releases
         self.upcoming_releases_ascending.sort(key=lambda x: x[0])
@@ -122,14 +126,13 @@ class Releases:
             title = i.text
             headers.append(title)
 
-        self.filter_releases = pandas.DataFrame(columns=headers)
+        self.filter = pandas.DataFrame(columns=headers)
 
         for j in table.find_all("tr")[1:]:
             row_data = j.find_all("td")
             row = [i.text for i in row_data]
-            length = len(self.filter_releases)
-            self.filter_releases.loc[length] = row
-        self.filter_releases = self.filter_releases.values.tolist()
+            row[1] = row[1].casefold()
+            length = len(self.filter)
+            self.filter.loc[length] = row
 
-    def filter_all_releases(self):
-        pass
+        self.filter = self.filter.loc[:, "Artist"].tolist()
