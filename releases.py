@@ -15,7 +15,7 @@ class Releases:
         self.upcoming_releases = []
         self.past_releases = []
         self.filter = []
-        self.filter_releases = []
+        self.filtered_releases = []
         self.upcoming_releases_ascending = []
         self.upcoming_releases_descending = []
         self.past_releases_ascending = []
@@ -51,7 +51,7 @@ class Releases:
                 self.all_releases[i][1] = "N/A"
 
             if self.all_releases[i][2].casefold() in self.filter:
-                self.filter_releases.append(self.all_releases[i])
+                self.filtered_releases.append(self.all_releases[i])
                 if datetime.datetime.strptime(self.all_releases[i][0], "%m-%d-%Y") < TODAY_DATE:
                     self.past_releases.append(self.all_releases[i])
                 else:

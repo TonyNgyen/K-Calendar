@@ -34,6 +34,11 @@ def releases_descending():
     return render_template("releases.html", releases=upcoming_releases_descending, p_releases=past_releases_descending,
                            ascending=False)
 
+@app.route('/private/testing')
+def test_page():
+    return render_template("artist_image_check.html", releases=upcoming_releases_descending, p_releases=past_releases_descending,
+                           ascending=False)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

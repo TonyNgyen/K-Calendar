@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <!-- Style Sheets -->
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" rel="stylesheet">
+  <link href="/static/css/releases_styles.css" rel="stylesheet">
+  <!-- Bootstrap Scripts -->
+  <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <title>Releases</title>
+</head>
+
+<body>
+  <!-- NavBar -->
+  <section id="nav-section">
+    <div class="nav-bar">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-custom">
+        <a class="navbar-brand" href="{{ url_for('home') }}">K-Calendar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('releases') }}">Releases</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rankings</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Upcoming Releases -->
+  <h1 class="upcoming-releases-header">
+    Upcoming Releases
+  </h1>
+
+  <div class="ascending-descending">
+    {% if ascending == True %}
+      <button type="button" class="btn btn-custom btn-sm" disabled>
+        Ascending
+      </button>
+      <a href="{{ url_for('releases_descending') }}" class="btn btn-custom btn-sm">
+        Descending
+      </a>
+    {% else %}
+      <a href="{{ url_for('releases') }}" class="btn btn-custom btn-sm">
+        Ascending
+      </a>
+      <button type="button" class="btn btn-custom btn-sm" disabled>
+        Descending
+      </button>
+    {% endif %}
+  </div>
+
+  <section id="upcoming-releases">
+    <div class="row">
+      {% for release in releases %}
+      <div class="col-lg-4 col-md-6 releases-card">
+        <div class="card" style="width: 90%;">
+          {% if ":" in release[2] %}
+          <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
+          {% else %}
+          <img src="https://i.scdn.co/image/ab6761610000e5eb196f5af772aeb1bdd3a6be65" class="card-img-top releases-img" alt="...">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="group-name">{{release[2]}}</h5>
+            <p class="date">{{release[0]}}</p>
+            <p class="album-name">{{release[3]}}</p>
+            <a class="btn btn-primary" data-container="body" title="test" tabindex="0" data-trigger="focus"
+              data-toggle="popover" data-placement="bottom" data-content="test">
+              Go somewhere
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="row">
+  </section>
+
+  <!-- Past Releases -->
+  <h1 class="past-releases-header">
+    Past Releases
+  </h1>
+
+  <section id="past-releases">
+    <div class="row">
+      {% for release in p_releases %}
+      <div class="col-lg-4 col-md-6 releases-card">
+        <div class="card" style="width: 90%;">
+          {% if ":" in release[2] %}
+          <img src="/static/images/card/class-y-card-img.jpeg" class="card-img-top releases-img" alt="...">
+          {% else %}
+          <img src="https://i.scdn.co/image/ab6761610000e5eb196f5af772aeb1bdd3a6be65" class="card-img-top releases-img" alt="...">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="group-name">{{release[2]}}</h5>
+            <p class="date">{{release[0]}}</p>
+            <p class="album-name">{{release[3]}}</p>
+            <a class="btn btn-primary" data-container="body" title="test" tabindex="0" data-trigger="focus"
+              data-toggle="popover" data-placement="bottom" data-content="test">
+              Go somewhere
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="row">
+  </section>
+
+
+  <!-- Footer -->
+  <div class="container footer">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+      </ul>
+      <p class="text-center text-muted">© 2022 Company, Inc</p>
+    </footer>
+  </div>
+
+  <script>
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+  </script>
+</body>
+
+</html>
