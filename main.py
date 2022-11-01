@@ -35,7 +35,9 @@ def releases_descending():
     return render_template("releases.html", releases=upcoming_releases_descending, p_releases=past_releases_descending, images=image_dict,
                            ascending=False)
 
-@app.route('/artist_profile/<str: artist>')
+@app.route('/artist_profile/<string:artist>')
+def artist_profile(artist):
+    return render_template("artist_profile.html", artist_name=artist)
 
 @app.route('/private/testing')
 def test_page():
