@@ -6,8 +6,6 @@ import pandas as pd
 import datetime
 from releases import Releases
 
-SPOTIFY_URL = "https://open.spotify.com/artist/3LFFf4EpKn2krneZ9vozyz"
-
 app = Flask(__name__)
 
 releases = Releases()
@@ -37,7 +35,7 @@ def releases_descending():
 
 @app.route('/artist_profile/<string:artist>')
 def artist_profile(artist):
-    return render_template("artist_profile.html", artist_name=artist)
+    return render_template("artist_profile.html", artist_name=artist, images=image_dict)
 
 @app.route('/private/testing')
 def test_page():

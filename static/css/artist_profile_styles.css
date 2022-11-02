@@ -1,6 +1,10 @@
 body {
     background-color: #fff;
-    padding-top: 7%;
+    padding-top: 8%;
+}
+
+img {
+    width: 100%;
 }
 
 .navbar {
@@ -11,78 +15,33 @@ body {
     background-color: black;
 }
 
-#upcoming-releases, #past-releases {
+.artist-name {
     text-align: center;
-    padding: 0 7%;
-}
-
-.upcoming-releases-header{
-    text-align: center;
-    padding-top: 15%;
-    padding-bottom: 1%;
-    color: black;
-    font-size: 700%
-}
-
-.ascending-descending {
-    padding-bottom: 5%;
-    text-align: center;
-}
-
-.btn-custom {
+    font-size: 700%;
     color: #000;
-}
-
-.btn-custom:hover, .btn-custom:active, .btn-custom:focus  {
-    color: #000 !important;
-    background-color: #fff !important;
-    border-color: #fff !important;
-}
-
-.past-releases-header {
-    text-align: center;
-    padding-top: 7%;
-    padding-bottom: 6%;
-    color: black;
-    font-size: 700%
+    margin: 5% 0%;
 }
 
 .row {
     text-align: center;
     margin: 0 auto 0;
+    padding: 0% 1.5%;
 }
 
-.card {
-    text-align: center;
-    margin: 10% auto 10%;
-    border-style: solid;
-    border-width: 3px;
-    border-color: black;
+.image-container {
+    padding-right: 1.5%;
+    margin-bottom: 5%;
 }
 
-.releases-img {
-    color: #000;
+.description-container {
+    padding-left: 1.5%;
+    margin-bottom: 5%;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #000;
-    border-color: #000
-}
-
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus  {
-    color: #000 !important;
-    background-color: #fff !important;
-    border-color: #000 !important;
-}
-
-.popover-header {
-    background-color: #000;
-    color: #fff;
-}
-.popover-body {
-    background-color: #fff;
-    color: #000;
+.artist-description {
+    text-align: left;
+    font-size: 115%;
+    line-height: 2;
 }
 
 .footer {
