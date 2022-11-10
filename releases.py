@@ -5,9 +5,9 @@ import datetime
 import json
 
 TODAY_DATE = datetime.datetime.today()
-UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/october/"
+UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/november/"
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-FILTER_RELEASES_URL = "https://dbkpop.com/2022/09/01/october-2022-k-pop-comebacks-and-debuts/"
+FILTER_RELEASES_URL = "https://dbkpop.com/2022/10/14/november-2022-k-pop-comebacks-and-debuts/"
 
 class Releases:
 
@@ -44,7 +44,7 @@ class Releases:
 
         for i in range(len(self.all_releases)):
             if self.all_releases[i][0] != "":
-                self.all_releases[i][0] = f"10-{self.all_releases[i][0][:-2]}-2022"
+                self.all_releases[i][0] = f"{datetime.datetime.now().month}-{self.all_releases[i][0][:-2]}-2022"
             else:
                 self.all_releases[i][0] = self.all_releases[i - 1][0]
 
