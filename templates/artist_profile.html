@@ -56,15 +56,19 @@
   <div class="artist-content">
     <div class="row">
       <div class="col-lg-6 col-md-12 image-container">
-        <img src="{{ images[artist_name]['img'] }}" alt="image for artist" class="artist-image">
+        {% if artist_name in images%}
+        <img src="{{ images[artist_name]['img'] }}" class="card-img-top releases-img" alt="...">
+        {% else %}
+        <img src="https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a" class="card-img-top releases-img" alt="...">
+        {% endif %}
       </div>
       <div class="col-lg-6 col-md-12 description-container">
         <div class="artist-description">
-          LE SSERAFIM is a girl group with SOURCE MUSIC, a label under HYBE, consisting of five members of different nationalities: SAKURA, 
-          KIM CHAEWON, HUH YUNJIN, KAZUHA and HONG EUNCHAE. The first girl group to launch through a collaboration between HYBE and SOURCE MUSIC, 
-          they are taking a daring stance and saying right from the outset that they will stand at the very top. The group's name, LE SSERAFIM, 
-          is an anagram of the words “I'M FEARLESS.” The name captures the group's self-confidence and iron will as they go out into the world 
-          fearlessly and unwavering before the watchful eyes of the world. It is like an incantation to guarantee their success on the merit of 
+          LE SSERAFIM is a girl group with SOURCE MUSIC, a label under HYBE, consisting of five members of different nationalities: SAKURA,
+          KIM CHAEWON, HUH YUNJIN, KAZUHA and HONG EUNCHAE. The first girl group to launch through a collaboration between HYBE and SOURCE MUSIC,
+          they are taking a daring stance and saying right from the outset that they will stand at the very top. The group's name, LE SSERAFIM,
+          is an anagram of the words “I'M FEARLESS.” The name captures the group's self-confidence and iron will as they go out into the world
+          fearlessly and unwavering before the watchful eyes of the world. It is like an incantation to guarantee their success on the merit of
           their unbreakable poise and strength.
         </div>
       </div>
