@@ -56,10 +56,10 @@
   <div class="artist-content">
     <div class="row">
       <div class="col-lg-6 col-md-12 image-container">
-        {% if artist_name in images%}
-        <img src="{{ images[artist_name]['img'] }}" class="card-img-top releases-img" alt="...">
+        {% if artist_name in data%}
+        <img src="{{ data[artist_name]['artist_image'] }}" class="" alt="...">
         {% else %}
-        <img src="https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a" class="card-img-top releases-img" alt="...">
+        <img src="https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a" class="" alt="...">
         {% endif %}
       </div>
       <div class="col-lg-6 col-md-12 description-container">
@@ -72,6 +72,34 @@
           their unbreakable poise and strength.
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="albums-header">
+    Albums
+  </div>
+
+  <div class="albums">
+    <div class="row">
+      {% for album in data[artist_name]["releases"]["albums"] %}
+      <div class="col-lg-2 col-md-4 col-sm-6">
+        <img src="{{ album['album image'] }}" class="" alt="">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="singles-header">
+    Singles / EPs
+  </div>
+
+  <div class="singles">
+    <div class="row">
+      {% for album in data[artist_name]["releases"]["singles"] %}
+      <div class="col-lg-2 col-md-4 col-sm-6">
+        <img src="{{ album['album image'] }}" class="" alt="">
+      </div>
+      {% endfor %}
     </div>
   </div>
 

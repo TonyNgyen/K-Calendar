@@ -97,6 +97,6 @@ class Releases:
         self.filter = self.filter.loc[:, "Artist"].tolist()
 
     def get_images(self):
-        with open("static/images/card/Data.json", "r") as data_file:
+        with open("static/artist_info/Data.json", "r") as data_file:
             data = json.load(data_file)
         return data
