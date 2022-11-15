@@ -188,15 +188,15 @@ class SpotifyAPI(object):
                 data_dict[artist] = {"artist_id": "NOT FOUND", "artist_image": "NOT FOUND",
                                      "releases": "NOT FOUND", "related artists": "NOT FOUND"}
         try:
-            with open("Data.json", "r") as data_file:
+            with open("static/artist_info/Data.JSON", "r") as data_file:
                 data = json.load(data_file)
                 data.update(data_dict)
         except FileNotFoundError:
-            with open("Data.json", "w") as data_file:
+            with open("static/artist_info/Data.JSON", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         else:
             data.update(data_dict)
-            with open("Data.json", "w") as data_file:
+            with open("static/artist_info/Data.JSON", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         return True
 
@@ -215,21 +215,21 @@ class SpotifyAPI(object):
             data_dict[artist_name] = {"artist_id": artist_id, "artist_image": artist_image,
                                       "releases": albums, "related artists": related_artists}
         try:
-            with open("Data.json", "r") as data_file:
+            with open("static/artist_info/Data.JSON", "r") as data_file:
                 data = json.load(data_file)
                 data.update(data_dict)
         except FileNotFoundError:
-            with open("Data.json", "w") as data_file:
+            with open("static/artist_info/Data.JSON", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         else:
             data.update(data_dict)
-            with open("Data.json", "w") as data_file:
+            with open("static/artist_info/Data.JSON", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         return True
 
     def update_data_file(self, artist_list):
         try:
-            with open("Data.json", "r") as data_file:
+            with open("static/artist_info/Data.JSON", "r") as data_file:
                 data = json.load(data_file)
                 add_list = []
                 for artist in artist_list:
@@ -261,7 +261,7 @@ class SpotifyAPI(object):
         return all_releases
 
     def update_related_artists(self):
-        with open("Data.json", "r") as data_file:
+        with open("static/artist_info/Data.JSON", "r") as data_file:
             data = json.load(data_file)
             update_list=[]
             for element in data.values():
@@ -277,6 +277,7 @@ class SpotifyAPI(object):
 
 # EXAMPLE CODE IF NOT SURE HOW THE CLASS WORKS
 # spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
+# spotify.get_all_data_name(["ITZY"])
 # artist_list = ["BTS", "ENHYPEN", "IVE", "LE SSERAFIM", "TXT", "NewJeans", "aespa", "STAYC"]
 # spotify.get_all_data_id(["5R7AMwDeroq6Ls0COQYpS4"])
 # print(spotify.update_data_file(artist_list))
