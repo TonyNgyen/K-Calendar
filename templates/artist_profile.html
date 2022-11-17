@@ -128,7 +128,7 @@
     </div>
     <div class="row justify-content-center">
       {% for album in data[artist_name]["releases"]["singles"] %}
-      <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="col-lg-2 col-md-4 col-sm-6 release-section">
         <img src="{{ album['release image'] }}" class="" alt="">
       </div>
       {% endfor %}

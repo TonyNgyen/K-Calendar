@@ -60,6 +60,11 @@ img {
     margin: 0 auto 0;
 }
 
+.release-section {
+    margin-bottom: 1.5%;
+    filter: drop-shadow(8px 8px 5px rgb(190, 190, 190));
+}
+
 .no-release-message {
     text-align: center;
     font-size: 200%;
