@@ -57,47 +57,79 @@
     <div class="row">
       <div class="col-lg-6 col-md-12 image-container">
         {% if artist_name in data%}
-        <img src="{{ data[artist_name]['artist_image'] }}" class="" alt="...">
+        <img src="{{ data[artist_name]['artist_image'] }}" class="artist-image" alt="...">
         {% else %}
-        <img src="https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a" class="" alt="...">
+        <img src="https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a" class="artist-image" alt="...">
         {% endif %}
       </div>
       <div class="col-lg-6 col-md-12 description-container">
         <div class="artist-description">
-          LE SSERAFIM is a girl group with SOURCE MUSIC, a label under HYBE, consisting of five members of different nationalities: SAKURA,
-          KIM CHAEWON, HUH YUNJIN, KAZUHA and HONG EUNCHAE. The first girl group to launch through a collaboration between HYBE and SOURCE MUSIC,
-          they are taking a daring stance and saying right from the outset that they will stand at the very top. The group's name, LE SSERAFIM,
-          is an anagram of the words “I'M FEARLESS.” The name captures the group's self-confidence and iron will as they go out into the world
-          fearlessly and unwavering before the watchful eyes of the world. It is like an incantation to guarantee their success on the merit of
-          their unbreakable poise and strength.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam commodo augue ac condimentum pharetra. 
+          Phasellus quis ex id quam feugiat vestibulum. Praesent tincidunt, nibh tempus egestas consequat, lectus 
+          magna accumsan nisl, sed imperdiet nunc purus imperdiet urna. Curabitur consequat elit elit, eu 
+          vestibulum risus pretium ut. Aliquam ornare fringilla risus, vel consectetur metus porttitor vitae. 
+          Donec id mauris quis mi porta mollis. Donec eu sem nec est tristique rutrum. Quisque lacinia est et 
+          mauris ullamcorper sagittis. Maecenas ultricies diam quis ante eleifend euismod. Sed pretium magna nec 
+          ipsum consectetur, in egestas purus tempus. Mauris vestibulum, nibh id elementum euismod, arcu sem porttitor 
+          diam, sagittis pulvinar massa turpis in nisl. Fusce pretium tempor elit, et feugiat enim tincidunt ac. 
+          Pellentesque eleifend vestibulum porta.
         </div>
       </div>
     </div>
   </div>
 
-  <div class="albums-header">
+  <div class="release-header">
     Albums
   </div>
 
   <div class="albums">
-    <div class="row">
+    {% if data[artist_name]["releases"]["albums"]|length == 0 %}
+    <div class="no-release-message">
+      There are no current released albums for {{artist_name}}
+      {% endif %}
+    </div>
+    <div class="row justify-content-center">
       {% for album in data[artist_name]["releases"]["albums"] %}
-      <div class="col-lg-2 col-md-4 col-sm-6">
-        <img src="{{ album['album image'] }}" class="" alt="">
+      <div class="col-lg-2 col-md-4 col-sm-6 release-section">
+        <img src="{{ album['release image'] }}" class="" alt="">
       </div>
       {% endfor %}
     </div>
   </div>
 
-  <div class="singles-header">
-    Singles / EPs
+  <div class="release-header">
+    EPs
+  </div>
+
+  <div class="eps">
+    {% if data[artist_name]["releases"]["eps"]|length == 0 %}
+    <div class="no-release-message">
+      There are no current released albums for {{artist_name}}
+      {% endif %}
+    </div>
+    <div class="row justify-content-center">
+      {% for album in data[artist_name]["releases"]["eps"] %}
+      <div class="col-lg-2 col-md-4 col-sm-6 release-section">
+        <img src="{{ album['release image'] }}" class="" alt="">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="release-header">
+    Singles
   </div>
 
   <div class="singles">
-    <div class="row">
+    {% if data[artist_name]["releases"]["singles"]|length == 0 %}
+    <div class="no-release-message">
+      There are no current released albums for {{artist_name}}
+      {% endif %}
+    </div>
+    <div class="row justify-content-center">
       {% for album in data[artist_name]["releases"]["singles"] %}
       <div class="col-lg-2 col-md-4 col-sm-6">
-        <img src="{{ album['album image'] }}" class="" alt="">
+        <img src="{{ album['release image'] }}" class="" alt="">
       </div>
       {% endfor %}
     </div>

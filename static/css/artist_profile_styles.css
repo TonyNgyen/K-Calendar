@@ -33,6 +33,10 @@ img {
     margin-bottom: 5%;
 }
 
+.artist-image {
+    width: 80%;
+}
+
 .description-container {
     padding-left: 1.5%;
     margin-bottom: 5%;
@@ -42,6 +46,25 @@ img {
     text-align: left;
     font-size: 115%;
     line-height: 2;
+}
+
+.release-header {
+    text-align: center;
+    font-size: 500%;
+    color: #000;
+    margin: 5% 0%;
+}
+
+.row {
+    text-align: center;
+    margin: 0 auto 0;
+}
+
+.no-release-message {
+    text-align: center;
+    font-size: 200%;
+    color: #000;
+    margin: 5% 0%;
 }
 
 .footer {

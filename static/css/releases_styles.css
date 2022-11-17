@@ -47,11 +47,6 @@ body {
     font-size: 700%
 }
 
-.row {
-    text-align: center;
-    margin: 0 auto 0;
-}
-
 .card {
     text-align: center;
     margin: 10% auto 10%;
@@ -60,8 +55,14 @@ body {
     border-color: black;
 }
 
+.image-container {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
 .releases-img {
     color: #000;
+    object-fit: cover;
 }
 
 .btn-primary {
