@@ -123,51 +123,12 @@ class SpotifyAPI(object):
             artist_id = artist_information["id"]
             artist_image = artist_information["images"][0]["url"]
             related_artists = self.get_related_artists(artist_id)
-            albums = self.get_all_releases(artist_id)
+            albums = self.get_releases(artist_id)
             artist_info[artist_name] = {"artist_id": artist_id, "artist_image": artist_image,
                                       "releases": albums, "related artists": related_artists}
         except IndexError:
             artist_info[artist_name] = {"artist_id": "NOT FOUND", "artist_image": "NOT FOUND", "releases": "NOT FOUND"}
         return artist_info
-
-    def get_release(self, artist_id, search_type):
-        headers = self.get_resource_headers()
-        album_endpoint = f"https://api.spotify.com/v1/artists/{artist_id}/albums?limit=50&include_groups={search_type}"
-        r = requests.get(url=album_endpoint, headers=headers)
-        if r.status_code not in range(200, 299):
-            return {}
-        albums_data = r.json()["items"]
-        albums_list = []
-        for element in albums_data:
-            if len(element["available_markets"]) > 1:
-                albums_dict = {"album name": element["name"], "album release date": element["release_date"],
-                               "album link": element["external_urls"]["spotify"],
-                               "album length": element["total_tracks"],
-                               "album id": element["id"], "album image": element["images"][0]["url"],
-                               "album_tracks": self.get_release_tracks(element["id"])}
-                albums_list.append(albums_dict)
-        return albums_list
-
-    def get_albums(self, artist_id):
-        return self.get_release(artist_id=artist_id, search_type="album")
-
-    def get_singles(self, artist_id):
-        return self.get_release(artist_id=artist_id, search_type="single")
-
-    def get_release_tracks(self, album_id):
-        headers = self.get_resource_headers()
-        endpoint = f"https://api.spotify.com/v1/albums/{album_id}/tracks?limit=50"
-        r = requests.get(url=endpoint, headers=headers)
-        if r.status_code not in range(200, 299):
-            return {}
-        album_data = r.json()["items"]
-        album_tracks = []
-        for track in album_data:
-            albums_tracks_dict = {"track name": track["name"], "track id": track["id"],
-                                  "track link": track["external_urls"]["spotify"],
-                                  "track preview": track["preview_url"]}
-            album_tracks.append(albums_tracks_dict)
-        return album_tracks
 
     def get_all_data_name(self, name_list):
         data_dict = {}
@@ -181,22 +142,22 @@ class SpotifyAPI(object):
                 except IndexError:
                     artist_image = "https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a"
                 related_artists = self.get_related_artists(artist_id)
-                albums = self.get_all_releases(artist_id)
+                albums = self.get_releases(artist_id)
                 data_dict[artist_name] = {"artist_id": artist_id, "artist_image": artist_image,
                                           "releases": albums, "related artists": related_artists}
             except IndexError:
                 data_dict[artist] = {"artist_id": "NOT FOUND", "artist_image": "NOT FOUND",
                                      "releases": "NOT FOUND", "related artists": "NOT FOUND"}
         try:
-            with open("static/artist_info/Data.JSON", "r") as data_file:
+            with open("Data.json", "r") as data_file:
                 data = json.load(data_file)
                 data.update(data_dict)
         except FileNotFoundError:
-            with open("static/artist_info/Data.JSON", "w") as data_file:
+            with open("Data.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         else:
             data.update(data_dict)
-            with open("static/artist_info/Data.JSON", "w") as data_file:
+            with open("Data.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         return True
 
@@ -211,25 +172,25 @@ class SpotifyAPI(object):
             except IndexError:
                 artist_image = "https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a"
             related_artists = self.get_related_artists(artist_id)
-            albums = self.get_all_releases(artist_id)
+            releases = self.get_releases(artist_id)
             data_dict[artist_name] = {"artist_id": artist_id, "artist_image": artist_image,
-                                      "releases": albums, "related artists": related_artists}
+                                      "releases": releases, "related artists": related_artists}
         try:
-            with open("static/artist_info/Data.JSON", "r") as data_file:
+            with open("Data.json", "r") as data_file:
                 data = json.load(data_file)
                 data.update(data_dict)
         except FileNotFoundError:
-            with open("static/artist_info/Data.JSON", "w") as data_file:
+            with open("Data.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         else:
             data.update(data_dict)
-            with open("static/artist_info/Data.JSON", "w") as data_file:
+            with open("Data.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         return True
 
     def update_data_file(self, artist_list):
         try:
-            with open("static/artist_info/Data.JSON", "r") as data_file:
+            with open("Data.json", "r") as data_file:
                 data = json.load(data_file)
                 add_list = []
                 for artist in artist_list:
@@ -256,14 +217,10 @@ class SpotifyAPI(object):
                                                         "image": "https://i.scdn.co/image/ab6761610000e5ebb1a15fd3e7c1b375dea2637a"}
         return related_artists_dict
 
-    def get_all_releases(self, artist_id):
-        all_releases = {"albums": self.get_albums(artist_id), "singles": self.get_singles(artist_id)}
-        return all_releases
-
     def update_related_artists(self):
-        with open("static/artist_info/Data.JSON", "r") as data_file:
+        with open("Data.json", "r") as data_file:
             data = json.load(data_file)
-            update_list=[]
+            update_list = []
             for element in data.values():
                 try:
                     related_artists = (element["related artists"])
@@ -275,14 +232,86 @@ class SpotifyAPI(object):
             self.get_all_data_id(id_list=update_list)
         return True
 
+    def get_releases(self, artist_id):
+        headers = self.get_resource_headers()
+        id_list = self.get_releases_id(artist_id)
+        albums_list, singles_list, eps_list = [], [], []
+        while len(id_list) >= 20 or len(id_list) > 0:
+            current_list = id_list[0:20]
+            del id_list[:20]
+            query = ",".join(current_list)
+            releases_endpoint = f"https://api.spotify.com/v1/albums?ids={query}"
+            r = requests.get(url=releases_endpoint, headers=headers)
+            if r.status_code not in range(200, 299):
+                return {}
+            releases = r.json()["albums"]
+            is_single = True
+            for release in releases:
+                tracks = []
+                album_length_ms = 0
+                for track in release["tracks"]["items"]:
+                    album_length_ms += track["duration_ms"]
+                    if track["duration_ms"]/60000 > 10:
+                        is_single = False
+                    track = {"track name": track["name"], "track id": track["id"],
+                             "track link": track["external_urls"]["spotify"], "track preview": track["preview_url"]}
+                    tracks.append(track)
+                release_dict = {"release name": release["name"], "release release date": release["release_date"],
+                                "release link": release["external_urls"]["spotify"], "release type": release["album_type"],
+                                "release length tracks": release["total_tracks"], "release image": release["images"][0]["url"],
+                                "release tracks": tracks}
+                if release_dict["release type"] == "single":
+                    if album_length_ms/60000 < 30 and release_dict["release length tracks"] <= 3 and is_single:
+                        singles_list.append(release_dict)
+                    else:
+                        eps_list.append(release_dict)
+                else:
+                    albums_list.append(release_dict)
+        return {"albums": albums_list, "eps": eps_list, "singles": singles_list}
+
+    def get_releases_id(self, artist_id):
+        headers = self.get_resource_headers()
+        album_endpoint = f"https://api.spotify.com/v1/artists/{artist_id}/albums?limit=50&include_groups=album,single"
+        r = requests.get(url=album_endpoint, headers=headers)
+        if r.status_code not in range(200, 299):
+            return {}
+        albums_data = r.json()["items"]
+        albums_list = []
+        albums_tracker = 0
+        while len(albums_data) == 50:
+            for element in albums_data:
+                if len(element["available_markets"]) > 5:
+                    albums_list.append(element["id"])
+            albums_tracker += len(albums_data)
+            album_endpoint = f"https://api.spotify.com/v1/artists/{artist_id}/albums?limit=50&include_groups=album,single&offset={albums_tracker}"
+            r = requests.get(url=album_endpoint, headers=headers)
+            albums_data = r.json()["items"]
+        r = requests.get(url=album_endpoint, headers=headers)
+        albums_data = r.json()["items"]
+        for element in albums_data:
+            if len(element["available_markets"]) > 1:
+                albums_list.append(element["id"])
+        return albums_list
+
+    def update_entire_data(self):
+        with open("Data.json", "r") as data_file:
+            data = json.load(data_file)
+            id_list = []
+            for element in data:
+                id_list.append(data[element]["artist_id"])
+        self.get_all_data_id(id_list)
+
+
 # EXAMPLE CODE IF NOT SURE HOW THE CLASS WORKS
-# spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
-# spotify.get_all_data_name(["ITZY"])
-# artist_list = ["BTS", "ENHYPEN", "IVE", "LE SSERAFIM", "TXT", "NewJeans", "aespa", "STAYC"]
-# spotify.get_all_data_id(["5R7AMwDeroq6Ls0COQYpS4"])
-# print(spotify.update_data_file(artist_list))
-# print(spotify.search(query='BTS')["artists"]["items"][0])
-# print(spotify.get_related_artists("3Nrfpe0tUJi4K4DXYWgMUX"))
-# albums = spotify.get_artist_albums(artist_id)
-# album_tracks = spotify.get_album_tracks(album_id="6al2VdKbb6FIz9d7lU7WRB")
-# print(spotify.search(query="Danger", operator="NOT", operator_query="Zone", search_type="track"))
+    # spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
+    # spotify.get_all_data_id(["2KC9Qb60EaY0kW4eH68vr3"])
+    # print(spotify.get_releases(["6al2VdKbb6FIz9d7lU7WRB", "3u0ggfmK0vjuHMNdUbtaa9"]))
+    # artist_list = ["BTS", "ENHYPEN", "IVE", "LE SSERAFIM", "TXT", "NewJeans", "aespa", "STAYC"]
+    # spotify.get_all_data_name(artist_list)
+    # spotify.get_all_data_id(["5R7AMwDeroq6Ls0COQYpS4"])
+    # print(spotify.update_data_file(artist_list))
+    # print(spotify.search(query='BTS')["artists"]["items"][0])
+    # print(spotify.get_related_artists("3Nrfpe0tUJi4K4DXYWgMUX"))
+    # albums = spotify.get_artist_albums(artist_id)
+    # album_tracks = spotify.get_album_tracks(album_id="6al2VdKbb6FIz9d7lU7WRB")
+    # print(spotify.search(query="Danger", operator="NOT", operator_query="Zone", search_type="track"))
