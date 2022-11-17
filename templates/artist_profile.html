@@ -54,7 +54,7 @@
   </div>
 
   <div class="artist-content">
-    <div class="row">
+    <div class="row row-information">
       <div class="col-lg-6 col-md-12 image-container">
         {% if artist_name in data%}
         <img src="{{ data[artist_name]['artist_image'] }}" class="artist-image" alt="...">
@@ -88,10 +88,12 @@
       There are no current released albums for {{artist_name}}
       {% endif %}
     </div>
-    <div class="row justify-content-center">
-      {% for album in data[artist_name]["releases"]["albums"] %}
+    <div class="row justify-content-center row-release">
+      {% for release in data[artist_name]["releases"]["albums"] %}
       <div class="col-lg-2 col-md-4 col-sm-6 release-section">
-        <img src="{{ album['release image'] }}" class="" alt="">
+        <img src="{{ release['release image'] }}" class="release-img" alt="">
+        <div class="overlay"></div>
+        <div class="overlay-text">{{release["release name"]}}</div>
       </div>
       {% endfor %}
     </div>
@@ -107,10 +109,12 @@
       There are no current released albums for {{artist_name}}
       {% endif %}
     </div>
-    <div class="row justify-content-center">
-      {% for album in data[artist_name]["releases"]["eps"] %}
+    <div class="row justify-content-center row-release">
+      {% for release in data[artist_name]["releases"]["eps"] %}
       <div class="col-lg-2 col-md-4 col-sm-6 release-section">
-        <img src="{{ album['release image'] }}" class="" alt="">
+        <img src="{{ release['release image'] }}" class="release-img" alt="">
+        <div class="overlay"></div>
+        <div class="overlay-text">{{release["release name"]}}</div>
       </div>
       {% endfor %}
     </div>
@@ -126,10 +130,12 @@
       There are no current released albums for {{artist_name}}
       {% endif %}
     </div>
-    <div class="row justify-content-center">
-      {% for album in data[artist_name]["releases"]["singles"] %}
+    <div class="row justify-content-center row-release">
+      {% for release in data[artist_name]["releases"]["singles"] %}
       <div class="col-lg-2 col-md-4 col-sm-6 release-section">
-        <img src="{{ album['release image'] }}" class="" alt="">
+        <img src="{{ release['release image'] }}" class="release-img" alt="">
+        <div class="overlay"></div>
+        <div class="overlay-text">{{release["release name"]}}</div>
       </div>
       {% endfor %}
     </div>

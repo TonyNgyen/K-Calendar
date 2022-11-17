@@ -22,7 +22,7 @@ img {
     margin: 5% 0%;
 }
 
-.row {
+.row-information {
     text-align: center;
     margin: 0 auto 0;
     padding: 0% 1.5%;
@@ -55,14 +55,56 @@ img {
     margin: 5% 0%;
 }
 
-.row {
+.row-release {
     text-align: center;
     margin: 0 auto 0;
+    padding: 0% 5%;
 }
 
 .release-section {
     margin-bottom: 1.5%;
+}
+  
+.release-section:hover .overlay {
+    opacity: .5;
+}
+
+.release-section:hover .overlay-text {
+    opacity: 1;
+    color: #fff;
+}
+
+
+.release-img {
+    transition: .5s ease;
+    backface-visibility: hidden;
     filter: drop-shadow(8px 8px 5px rgb(190, 190, 190));
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5%;
+    right: 0;
+    height: 100%;
+    width: 90%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000;
+}
+
+.overlay-text {
+    color: #fff;
+    font-size: 150%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .no-release-message {

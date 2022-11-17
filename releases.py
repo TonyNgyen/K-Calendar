@@ -62,11 +62,9 @@ class Releases:
                     self.upcoming_releases.append(self.all_releases[i])
 
         self.upcoming_releases_ascending = self.upcoming_releases
-        # self.upcoming_releases_ascending.sort(key=lambda x: x[0])
         self.upcoming_releases_descending = self.upcoming_releases_ascending[::-1]
 
         self.past_releases_descending = self.past_releases
-        # self.past_releases_descending.sort(key=lambda x: x[0])
         self.past_releases_ascending = self.past_releases_descending[::-1]
 
         return self.upcoming_releases_ascending, self.upcoming_releases_descending, \
