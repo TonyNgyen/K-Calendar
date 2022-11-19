@@ -38,8 +38,7 @@ def artist_profile(artist):
 
 @app.route('/private/testing')
 def test_page():
-    return render_template("artist_image_check.html", releases=past_releases_ascending, images=data_dict,
-                           ascending=False)
+    return render_template("test.html", artist_name="BTS", data=data_dict)
 
 
 if __name__ == "__main__":
