@@ -256,10 +256,16 @@ class SpotifyAPI(object):
                     track = {"track name": track["name"], "track id": track["id"],
                              "track link": track["external_urls"]["spotify"], "track preview": track["preview_url"]}
                     tracks.append(track)
-                release_dict = {"release name": release["name"], "release release date": release["release_date"],
-                                "release link": release["external_urls"]["spotify"], "release type": release["album_type"],
-                                "release length tracks": release["total_tracks"], "release image": release["images"][0]["url"],
-                                "release tracks": tracks}
+                try:
+                    release_dict = {"release name": release["name"], "release release date": release["release_date"],
+                                    "release link": release["external_urls"]["spotify"], "release type": release["album_type"],
+                                    "release length tracks": release["total_tracks"], "release image": release["images"][0]["url"],
+                                    "release tracks": tracks}
+                except IndexError:
+                    release_dict = {"release name": release["name"], "release release date": release["release_date"],
+                                    "release link": release["external_urls"]["spotify"], "release type": release["album_type"],
+                                    "release length tracks": 0, "release image": "NOT FOUND",
+                                    "release tracks": tracks}
                 if release_dict["release type"] == "single":
                     if album_length_ms/60000 < 30 and release_dict["release length tracks"] <= 3 and is_single:
                         singles_list.append(release_dict)
@@ -304,9 +310,7 @@ class SpotifyAPI(object):
 
 # EXAMPLE CODE IF NOT SURE HOW THE CLASS WORKS
 spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
-data_list = ["1iyFL3CRuKW7PXgPH4VxSP", "49DJRZw2T9mtMBpXkdQPCL", "5vGoWnZO65NBgiZYBmi3iW", "7aZ221EQfonNG2lO9Hh192",
-             "0UntV1Bw2hk3fbRrm9eMP6", "4jCGRzuZkwo8CxboiANMEU"]
-spotify.get_all_data_id(data_list)
+spotify.update_related_artists()
     # spotify.get_all_data_id(["2KC9Qb60EaY0kW4eH68vr3"])
     # print(spotify.get_releases(["6al2VdKbb6FIz9d7lU7WRB", "3u0ggfmK0vjuHMNdUbtaa9"]))
     # artist_list = ["BTS", "ENHYPEN", "IVE", "LE SSERAFIM", "TXT", "NewJeans", "aespa", "STAYC"]
