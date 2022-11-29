@@ -36,6 +36,10 @@ def releases_descending():
 def artist_profile(artist):
     return render_template("artist_profile.html", artist_name=artist, data=data_dict)
 
+@app.route('/artist_profile/<string:artist>/<string:release>')
+def release(artist, release):
+    return render_template("release.html", release_name=release, artist_name=artist, data=data_dict)
+
 @app.route('/private/testing')
 def test_page():
     return render_template("test.html", artist_name="BTS", data=data_dict)

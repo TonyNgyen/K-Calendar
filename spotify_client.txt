@@ -1,0 +1,4 @@
+{
+    "CLIENT ID": "e4b41073368b4e2f91fc56369768b51d",
+    "CLIENT SECRET": "1c61ae9fc4e94a2ca5e07197b59a9db6"
+}

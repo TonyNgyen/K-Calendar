@@ -65,15 +65,15 @@ img {
     margin-bottom: 2%;
 }
 
-.release-img:hover .release-img {
+.overlay:hover .release-img {
     -webkit-filter: brightness(45%);
 }
 
-.release-img:not(:hover) .release-img {
+.overlay:not(:hover) .release-img {
   -webkit-filter: brightness(100%);
 }
 
-.release-img:hover .overlay-text {
+.release-section:hover .overlay-text {
     opacity: 1;
     color: #fff;
 }
@@ -122,15 +122,15 @@ img {
     margin-bottom: 1.5%;
 }
 
-.related-img:hover .related-img {
+.overlay:hover .related-img {
     -webkit-filter: brightness(45%);
 }
 
-.related-img:not(:hover) .related-img {
+.overlay:not(:hover) .related-img {
   -webkit-filter: brightness(100%);
 }
 
-.related-img:hover .overlay-text {
+.overlay:hover .overlay-text {
     opacity: 1;
     color: #fff;
 }

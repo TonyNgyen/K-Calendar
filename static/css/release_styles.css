@@ -1,0 +1,12 @@
+body {
+    background-color: #fff;
+    padding-top: 6%;
+}
+
+.navbar {
+    padding: 2%;
+}
+
+.navbar-custom {
+    background-color: black;
+}
