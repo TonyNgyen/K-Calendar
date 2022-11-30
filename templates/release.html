@@ -52,12 +52,21 @@
     </div>
   </section>
 
-  <main class="release-page">
-    <div class="release-name">
-        {{release_name}}
+  <main class="release-page container-fluid">
+    <section class="row page-top no-gutters">
+      <div class="col-lg-6 col-md-12">
+        <img src="{{ release_data['release image'] }}" alt="Release Image" class="release-image">
+      </div>
+      <div class="col-lg-6 col-md-12 release-name">
+        <p>{{release_name}}</p>
+      </div>
+    </section>
+    <div class="tracklist">
+      {% for track in release_data["release tracks"] %}
+        <p>{{track["track name"]}}</p>
+      {% endfor %}
     </div>
   </main>
-
 
   <!-- Footer -->
   <div class="container footer">

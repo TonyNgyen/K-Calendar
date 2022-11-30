@@ -10,3 +10,13 @@ body {
 .navbar-custom {
     background-color: black;
 }
+
+.page-top{
+    text-align: center;
+    margin: 8vh auto 0;
+    padding: 0 3vw;
+}
+
+.release-image {
+    width: 100%;
+}

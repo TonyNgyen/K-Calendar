@@ -235,7 +235,7 @@ class SpotifyAPI(object):
     def get_releases(self, artist_id):
         headers = self.get_resource_headers()
         id_list = self.get_releases_id(artist_id)
-        albums_list, singles_list, eps_list = [], [], []
+        albums_dict, singles_dict, eps_dict = {}, {}, {}
         while len(id_list) >= 20 or len(id_list) > 0:
             current_list = id_list[0:20]
             del id_list[:20]
@@ -257,23 +257,23 @@ class SpotifyAPI(object):
                              "track link": track["external_urls"]["spotify"], "track preview": track["preview_url"]}
                     tracks.append(track)
                 try:
-                    release_dict = {"release name": release["name"], "release release date": release["release_date"],
+                    release_dict = {"release date": release["release_date"],
                                     "release link": release["external_urls"]["spotify"], "release type": release["album_type"],
                                     "release length tracks": release["total_tracks"], "release image": release["images"][0]["url"],
                                     "release tracks": tracks}
                 except IndexError:
-                    release_dict = {"release name": release["name"], "release release date": release["release_date"],
+                    release_dict = {"release date": release["release_date"],
                                     "release link": release["external_urls"]["spotify"], "release type": release["album_type"],
                                     "release length tracks": 0, "release image": "NOT FOUND",
                                     "release tracks": tracks}
                 if release_dict["release type"] == "single":
                     if album_length_ms/60000 < 30 and release_dict["release length tracks"] <= 3 and is_single:
-                        singles_list.append(release_dict)
+                        singles_dict[release["name"]] = release_dict
                     else:
-                        eps_list.append(release_dict)
+                        eps_dict[release["name"]] = release_dict
                 else:
-                    albums_list.append(release_dict)
-        return {"albums": albums_list, "eps": eps_list, "singles": singles_list}
+                    albums_dict[release["name"]] = release_dict
+        return {"albums": albums_dict, "eps": eps_dict, "singles": singles_dict}
 
     def get_releases_id(self, artist_id):
         headers = self.get_resource_headers()
@@ -310,7 +310,7 @@ class SpotifyAPI(object):
 
 # EXAMPLE CODE IF NOT SURE HOW THE CLASS WORKS
 spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
-spotify.update_related_artists()
+spotify.get_all_data_id(["6UbmqUEgjLA6jAcXwbM1Z9"])
     # spotify.get_all_data_id(["2KC9Qb60EaY0kW4eH68vr3"])
     # print(spotify.get_releases(["6al2VdKbb6FIz9d7lU7WRB", "3u0ggfmK0vjuHMNdUbtaa9"]))
     # artist_list = ["BTS", "ENHYPEN", "IVE", "LE SSERAFIM", "TXT", "NewJeans", "aespa", "STAYC"]
