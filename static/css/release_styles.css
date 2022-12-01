@@ -14,9 +14,28 @@ body {
 .page-top{
     text-align: center;
     margin: 8vh auto 0;
-    padding: 0 3vw;
+    padding: 0 2vw;
 }
 
 .release-image {
     width: 100%;
+}
+
+.release-name {
+    font-size: 8vw;
+    margin-bottom: -5%;
+}
+
+.artist-information {
+    font-size: 3vw;
+}
+
+.artist-image {
+    display: inline;
+    width: 4vw;
+    border-radius: 50%;
+}
+
+.artist-name {
+    display: inline;
 }

@@ -38,7 +38,7 @@ def artist_profile(artist):
 
 @app.route('/artist_profile/<string:artist>/<string:release_type>/<string:release>')
 def release(artist, release, release_type):
-    return render_template("release.html", release_name=release, artist_name=artist, release_data=data_dict[artist]["releases"][release_type][release])
+    return render_template("release.html", release_name=release, artist_name=artist, release_data=data_dict[artist]["releases"][release_type][release], artist_data=data_dict[artist])
 
 @app.route('/private/testing')
 def test_page():
