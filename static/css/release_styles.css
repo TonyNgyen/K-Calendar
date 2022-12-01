@@ -19,11 +19,17 @@ body {
 
 .release-image {
     width: 100%;
+    margin-bottom: 1vh;
+}
+
+.release-information {
+    display: table-cell;
 }
 
 .release-name {
     font-size: 8vw;
-    margin-bottom: -5%;
+    line-height: 1;
+    margin-top: 3vh;
 }
 
 .artist-information {
@@ -38,4 +44,16 @@ body {
 
 .artist-name {
     display: inline;
+}
+
+.tracklist {
+    text-align: left;
+    margin-top: 3vh;
+    padding-left: 2%;
+    font-size: 4vh;
+    border: solid #000;
+    width: 100%;
+    height: 50.7vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }

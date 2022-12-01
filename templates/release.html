@@ -58,7 +58,6 @@
         <img src="{{ release_data['release image'] }}" alt="Release Image" class="release-image">
       </div>
       <div class="col-lg-6 col-md-12 release-information">
-        <div class="row">
           <div class="col-lg-12 release-name">
             <p>{{release_name}}</p>
           </div>
@@ -66,15 +65,16 @@
             <img src="{{ artist_data['artist_image'] }}" alt="Artist Image" class="artist-image align-middle">
             <p class="artist-name align-middle">{{artist_name}}</p>
           </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="tracklist">
+          {% for track in release_data["release tracks"] %}
+            <p>{{track["track name"]}}</p>
+          {% endfor %}
         </div>
       </div>
       
     </section>
-    <div class="tracklist">
-      {% for track in release_data["release tracks"] %}
-        <p>{{track["track name"]}}</p>
-      {% endfor %}
-    </div>
   </main>
 
   <!-- Footer -->
