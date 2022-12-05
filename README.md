@@ -1,8 +1,8 @@
 # K-Calendar
 A web application that tracks the releases of future Kpop songs. Not a finished product, will be constantly updating.
 
-Currently hosted on Heroku until Heroku is no longer free:
-https://k-calendar.herokuapp.com
+~~Currently hosted on Heroku until Heroku is no longer free:
+https://k-calendar.herokuapp.com~~
 ***
 ## General Info
  * All data about artists and their releases are taken from the Spotify API
