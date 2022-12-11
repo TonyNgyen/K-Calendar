@@ -94,7 +94,22 @@ class Releases:
 
         self.filter = self.filter.loc[:, "Artist"].tolist()
 
-    def get_images(self):
+    def get_data(self):
         with open("static/artist_info/Data.json", "r") as data_file:
             data = json.load(data_file)
         return data
+
+    def save_data(self):
+        self.get_releases()
+        releases_dict = {}
+        releases_dict["upcoming_releases_ascending"] = self.upcoming_releases_ascending
+        releases_dict["upcoming_releases_descending"] = self.upcoming_releases_descending
+        releases_dict["past_releases_ascending"] = self.past_releases_ascending
+        releases_dict["past_releases_descending"] = self.past_releases_descending
+        releases_dict["closest_releases"] = self.get_closest_releases()
+        try:
+            with open("static/artist_info/Releases.txt", "w") as data_file:
+                data_file.write(json.dumps(releases_dict))
+        except FileNotFoundError:
+            return False
+        

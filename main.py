@@ -5,17 +5,31 @@ import requests
 import pandas as pd
 import datetime
 from releases import Releases
+import json
 
 app = Flask(__name__)
 
+# How to use release class to scrape and get data, current version uses a local text file
+# releases = Releases()
+# (upcoming_releases_ascending, upcoming_releases_descending, past_releases_ascending, past_releases_descending) = \
+#     releases.get_releases()
+# closest_releases = releases.get_closest_releases()
+
+# How to use release class to update data
+# releases = Releases()
+# releases.save_data()
+
 releases = Releases()
 
-(upcoming_releases_ascending, upcoming_releases_descending, past_releases_ascending, past_releases_descending) = \
-    releases.get_releases()
+data_dict = releases.get_data()
 
-closest_releases = releases.get_closest_releases()
+with open("static/artist_info/Releases.txt", "r") as data_file:
+    data = data_file.read()
+    release_information = json.loads(data)
 
-data_dict = releases.get_images()
+(upcoming_releases_ascending, upcoming_releases_descending, past_releases_ascending, past_releases_descending, closest_releases) = \
+    release_information["upcoming_releases_ascending"], release_information["upcoming_releases_descending"], \
+    release_information["past_releases_ascending"], release_information["past_releases_descending"], release_information["closest_releases"]
 
 @app.route('/')
 def home():

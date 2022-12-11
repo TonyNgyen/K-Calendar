@@ -307,6 +307,11 @@ class SpotifyAPI(object):
                 id_list.append(data[element]["artist_id"])
         self.get_all_data_id(id_list)
 
+    def get_data(self):
+        with open("static/artist_info/Data.json", "r") as data_file:
+            data = json.load(data_file)
+        return data
+
 
 # EXAMPLE CODE IF NOT SURE HOW THE CLASS WORKS
 spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
