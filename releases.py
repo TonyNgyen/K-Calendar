@@ -97,7 +97,8 @@ class Releases:
 
     def get_data(self):
         my_dir = os.path.dirname(__file__)
-        json_file_path = os.path.join(my_dir, 'Data.json')
+        json_file_path = os.path.join(my_dir, 'static/artist_info/Data.json')
+        print(json_file_path)
         with open(json_file_path, "r") as data_file:
             data = json.load(data_file)
         return data
