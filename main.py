@@ -18,9 +18,10 @@ app = Flask(__name__)
 
 # How to use release class to update data
 # releases = Releases()
-# releases.save_data()
 
 releases = Releases()
+
+# releases.save_data()
 
 data_dict = releases.get_data()
 

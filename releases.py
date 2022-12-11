@@ -6,9 +6,9 @@ import json
 import os
 
 TODAY_DATE = datetime.datetime.today()
-UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/november/"
+UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/december/"
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-FILTER_RELEASES_URL = "https://dbkpop.com/2022/10/14/november-2022-k-pop-comebacks-and-debuts/"
+FILTER_RELEASES_URL = "https://dbkpop.com/2022/10/18/december-2022-k-pop-comebacks-and-debuts/"
 
 class Releases:
 
