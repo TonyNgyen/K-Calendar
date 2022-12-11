@@ -3,6 +3,9 @@ A web application that tracks the releases of future Kpop songs. Not a finished 
 
 ~~Currently hosted on Heroku until Heroku is no longer free:
 https://k-calendar.herokuapp.com~~
+
+Now hosted on PythonAnywhere:
+http://tonynguyen.pythonanywhere.com
 ***
 
 ## General Info
