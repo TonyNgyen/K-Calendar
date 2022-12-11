@@ -3,6 +3,7 @@ import requests
 import pandas
 import datetime
 import json
+import os
 
 TODAY_DATE = datetime.datetime.today()
 UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/november/"
@@ -95,7 +96,9 @@ class Releases:
         self.filter = self.filter.loc[:, "Artist"].tolist()
 
     def get_data(self):
-        with open("static/artist_info/Data.json", "r") as data_file:
+        my_dir = os.path.dirname(__file__)
+        json_file_path = os.path.join(my_dir, 'Data.json')
+        with open(json_file_path, "r") as data_file:
             data = json.load(data_file)
         return data
 
