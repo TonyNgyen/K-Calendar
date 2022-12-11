@@ -23,7 +23,9 @@ releases = Releases()
 
 data_dict = releases.get_data()
 
-with open("static/artist_info/Releases.txt", "r") as data_file:
+my_dir = os.path.dirname(__file__)
+json_file_path = os.path.join(my_dir, 'static/artist_info/Releases.txt')
+with open(json_file_path, "r") as data_file:
     data = data_file.read()
     release_information = json.loads(data)
 
