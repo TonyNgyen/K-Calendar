@@ -6,9 +6,9 @@ import json
 import os
 
 TODAY_DATE = datetime.datetime.today()
-UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2022/december/"
+UPCOMING_RELEASES_URL = "https://www.reddit.com/r/kpop/wiki/upcoming-releases/2023/january/"
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-FILTER_RELEASES_URL = "https://dbkpop.com/2022/10/18/december-2022-k-pop-comebacks-and-debuts/"
+FILTER_RELEASES_URL = "https://dbkpop.com/2022/11/10/january-2023-k-pop-comebacks-and-debuts/"
 
 class Releases:
 
@@ -45,7 +45,7 @@ class Releases:
 
         for i in range(len(self.all_releases)):
             if self.all_releases[i][0] != "":
-                self.all_releases[i][0] = f"{datetime.datetime.now().month}-{self.all_releases[i][0][:-2]}-2022"
+                self.all_releases[i][0] = f"{datetime.datetime.now().month}-{self.all_releases[i][0][:-2]}-{datetime.datetime.now().year}"
             else:
                 self.all_releases[i][0] = self.all_releases[i - 1][0]
 
@@ -116,3 +116,6 @@ class Releases:
         except FileNotFoundError:
             return False
         
+release = Releases()
+
+release.save_data()

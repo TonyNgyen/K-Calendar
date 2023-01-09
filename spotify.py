@@ -315,7 +315,7 @@ class SpotifyAPI(object):
 
 # EXAMPLE CODE IF NOT SURE HOW THE CLASS WORKS
 spotify = SpotifyAPI(CLIENT_ID, CLIENT_SECRET)
-spotify.get_all_data_id(["6UbmqUEgjLA6jAcXwbM1Z9"])
+spotify.get_releases("3Nrfpe0tUJi4K4DXYWgMUX")
     # spotify.get_all_data_id(["2KC9Qb60EaY0kW4eH68vr3"])
     # print(spotify.get_releases(["6al2VdKbb6FIz9d7lU7WRB", "3u0ggfmK0vjuHMNdUbtaa9"]))
     # artist_list = ["BTS", "ENHYPEN", "IVE", "LE SSERAFIM", "TXT", "NewJeans", "aespa", "STAYC"]
