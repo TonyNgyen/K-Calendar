@@ -115,7 +115,3 @@ class Releases:
                 data_file.write(json.dumps(releases_dict))
         except FileNotFoundError:
             return False
-        
-release = Releases()
-
-release.save_data()
