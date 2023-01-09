@@ -119,8 +119,10 @@
       {% for release in data[artist_name]["releases"]["eps"] %}
       <div class="col-lg-2 col-md-4 col-sm-6 release-section">
         <div class="overlay">
-          <img src="{{ data[artist_name]['releases']['eps'][release]['release image'] }}" class="release-img" alt="">
-          <div class="overlay-text">{{release}}</div>
+          <a href="{{ url_for('release', artist=artist_name, release=release, release_type='albums') }}"></a>
+            <img src="{{ data[artist_name]['releases']['eps'][release]['release image'] }}" class="release-img" alt="">
+            <div class="overlay-text">{{release}}</div>
+          </a>
         </div>
       </div>
       {% endfor %}
@@ -141,8 +143,10 @@
       {% for release in data[artist_name]["releases"]["singles"] %}
       <div class="col-lg-2 col-md-4 col-sm-6 release-section">
         <div class="overlay">
-          <img src="{{ data[artist_name]['releases']['singles'][release]['release image'] }}" class="release-img" alt="">
-          <div class="overlay-text">{{release}}</div>
+          <a href="{{ url_for('release', artist=artist_name, release=release, release_type='albums') }}"></a>
+            <img src="{{ data[artist_name]['releases']['singles'][release]['release image'] }}" class="release-img" alt="">
+            <div class="overlay-text">{{release}}</div>
+          </a>
         </div>
       </div>
       {% endfor %}
