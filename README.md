@@ -3,6 +3,9 @@ A web application that tracks the releases of future Kpop songs. Not a finished 
 
 ~~Currently hosted on Heroku until Heroku is no longer free:
 https://k-calendar.herokuapp.com~~
+
+Now hosted on PythonAnywhere:
+http://tonynguyen.pythonanywhere.com
 ***
 
 ## General Info
@@ -14,7 +17,6 @@ https://k-calendar.herokuapp.com~~
     * Reddit gets **all** Korean music releases while dbkpop is used to filter that data to get k-pop
 
 ## Future plans
- * Host web application on Firebase
  * Incorporate Javascript and React to make the web application more responsive/dynamic
  * Add News, Rankings, and Artist Information pages to add more uses to the web application
  * **Much later down the line:** Add a user system, so users can follow artists and track their releases specifically
